@@ -57,7 +57,7 @@ namespace API
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json",
-                "Northwind Service API Version 1");
+                "Curse API");
                 options.SupportedSubmitMethods(new[] {
             SubmitMethod.Get, SubmitMethod.Post,
             SubmitMethod.Put, SubmitMethod.Delete });
