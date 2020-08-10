@@ -1,16 +1,15 @@
+using API.Models;
 using API.Repositories;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using Swashbuckle.AspNetCore.Swagger;
-using Swashbuckle.AspNetCore.SwaggerUI;
 using Microsoft.OpenApi.Models;
-using API.Models;
-using Microsoft.EntityFrameworkCore;
+using Swashbuckle.AspNetCore.SwaggerUI;
+using System;
 
 namespace API
 {
@@ -30,12 +29,12 @@ namespace API
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IRepository, MockRepository>();
-            
-        services.AddSwaggerGen(options =>
-        {
-        options.SwaggerDoc(name: "v1", info: new OpenApiInfo
-        { Title = "LT Curses API", Version = "v1" });
-        });
+
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc(name: "v1", info: new OpenApiInfo
+                { Title = "LT Curses API", Version = "v1" });
+            });
 
         }
 

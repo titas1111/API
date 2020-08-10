@@ -41,9 +41,9 @@ namespace API.Controllers
                 return NotFound();
             }
 
-            CurseReadDto curseReadDto  = mapper.Map<CurseReadDto>(curse);
+            CurseReadDto curseReadDto = mapper.Map<CurseReadDto>(curse);
 
             return Ok(curseReadDto);
         }
-}
+    }
 }
