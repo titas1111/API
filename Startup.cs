@@ -6,6 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerUI;
+using Microsoft.OpenApi.Models;
 
 namespace API
 {
@@ -24,6 +27,12 @@ namespace API
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IRepository, MockRepository>();
             
+        services.AddSwaggerGen(options =>
+        {
+        options.SwaggerDoc(name: "v1", info: new OpenApiInfo
+        { Title = "LT Curses API", Version = "v1" });
+        });
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -43,6 +52,17 @@ namespace API
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json",
+                "Northwind Service API Version 1");
+                options.SupportedSubmitMethods(new[] {
+            SubmitMethod.Get, SubmitMethod.Post,
+            SubmitMethod.Put, SubmitMethod.Delete });
+            });
+
         }
     }
 }
