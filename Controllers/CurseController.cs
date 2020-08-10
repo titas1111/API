@@ -1,4 +1,5 @@
 ﻿using API.Dtos;
+using API.Models;
 using API.Repositories;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -19,15 +20,27 @@ namespace API.Controllers
             this.mapper = mapper;
         }
 
-
         [HttpGet]
-        [ProducesResponseType(200,
-        Type = typeof(IEnumerable<CurseReadDto>))]
-        public IEnumerable<CurseReadDto> GetAllCurses()
+        [ProducesResponseType(200)]
+        public ActionResult<IEnumerable<CurseReadDto>> GetAllCurses()
         {
             var curses = repository.GetAllCurses();
 
-            return mapper.Map<IEnumerable<CurseReadDto>>(curses);
+            return Ok(mapper.Map<IEnumerable<CurseReadDto>>(curses));
         }
-    }
+
+        [HttpGet("{id:int}")]
+        [ProducesResponseType(200, Type = typeof(Curse))]
+        [ProducesResponseType(404)]
+        public ActionResult<CurseReadDto> GetCurse(int id)
+        {
+            Curse curse = repository.GetCurseById(id);
+            if (curse == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(curse);
+        }
+}
 }
