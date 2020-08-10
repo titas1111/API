@@ -9,6 +9,8 @@ using System;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Microsoft.OpenApi.Models;
+using API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace API
 {
@@ -24,6 +26,8 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<CurseContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IRepository, MockRepository>();
             
