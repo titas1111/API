@@ -24,23 +24,26 @@ namespace API.Controllers
         [ProducesResponseType(200)]
         public ActionResult<IEnumerable<CurseReadDto>> GetAllCurses()
         {
-            var curses = repository.GetAllCurses();
+            IEnumerable<Curse> curses = repository.GetAllCurses();
 
             return Ok(mapper.Map<IEnumerable<CurseReadDto>>(curses));
         }
 
         [HttpGet("{id:int}")]
-        [ProducesResponseType(200, Type = typeof(Curse))]
+        [ProducesResponseType(200, Type = typeof(CurseReadDto))]
         [ProducesResponseType(404)]
         public ActionResult<CurseReadDto> GetCurse(int id)
         {
             Curse curse = repository.GetCurseById(id);
+
             if (curse == null)
             {
                 return NotFound();
             }
 
-            return Ok(curse);
+            CurseReadDto curseReadDto  = mapper.Map<CurseReadDto>(curse);
+
+            return Ok(curseReadDto);
         }
 }
 }
