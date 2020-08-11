@@ -1,3 +1,7 @@
-# CurseInLt-API
+# Repository Title Goes Here
 
-Work in progress, one day I will have a readme
+> Subtitle or Short Description Goes Here
+
+> ideally one sentence
+
+> include terms/tags that can be searched
