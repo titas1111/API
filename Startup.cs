@@ -28,7 +28,7 @@ namespace API
             services.AddDbContext<CurseContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddScoped<IRepository, MockRepository>();
+            services.AddScoped<IRepository, SqlRepository>();
 
             services.AddSwaggerGen(options =>
             {
