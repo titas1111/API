@@ -7,5 +7,6 @@ namespace API.Repositories
     {
         IEnumerable<Curse> GetAllCurses();
         Curse GetCurseById(int id);
+        Curse GetRandomCurse();
     }
 }

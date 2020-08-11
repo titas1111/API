@@ -20,5 +20,10 @@ namespace API.Repositories
         {
             return GetAllCurses().FirstOrDefault(x => x.Id == id);
         }
+
+        public Curse GetRandomCurse()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

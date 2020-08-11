@@ -24,5 +24,10 @@ namespace API.Repositories
         {
             return curseContext.Curses.FirstOrDefault(x => x.Id == id);
         }
+
+        public Curse GetRandomCurse()
+        {
+            return curseContext.Curses.OrderBy(r => Guid.NewGuid()).FirstOrDefault();
+        }
     }
 }
