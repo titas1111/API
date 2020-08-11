@@ -47,9 +47,14 @@ namespace API.Controllers
         }
 
         [HttpGet("GetRandomCurse")]
+        [ProducesResponseType(200, Type = typeof(CurseReadDto))]
         public ActionResult<CurseReadDto> GetRandomCurse()
         {
-            return Ok(repository.GetRandomCurse());
+
+            Curse curse = repository.GetRandomCurse();
+            CurseReadDto curseReadDto = mapper.Map<CurseReadDto>(curse);
+
+            return Ok(curseReadDto);
         }
     }
 }
