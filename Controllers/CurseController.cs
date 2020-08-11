@@ -45,5 +45,11 @@ namespace API.Controllers
 
             return Ok(curseReadDto);
         }
+
+        [HttpGet("GetRandomCurse")]
+        public ActionResult<CurseReadDto> GetRandomCurse()
+        {
+            return Ok(repository.GetRandomCurse());
+        }
     }
 }
