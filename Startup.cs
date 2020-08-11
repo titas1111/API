@@ -24,12 +24,11 @@ namespace API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
             services.AddControllers();
             services.AddDbContext<CurseContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddScoped<IRepository, SqlRepository>();
+            services.AddScoped<IRepository, MockRepository>();
 
             services.AddSwaggerGen(options =>
             {
@@ -49,15 +48,6 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            // after UseRouting and before UseEndpoints
-            app.UseCors(configurePolicy: options =>
-            {
-                options.WithMethods("GET", "POST", "PUT", "DELETE");
-                options.WithOrigins(
-                "https://localhost:5002" // for MVC client
-                );
-            });
 
             app.UseAuthorization();
 
