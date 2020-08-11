@@ -1,4 +1,4 @@
-# Repository Title Goes Here
+# CurseInLt-API
 
 > Subtitle or Short Description Goes Here
 
